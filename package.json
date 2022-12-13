@@ -1,0 +1,33 @@
+{
+  "name": "create-lib",
+  "version": "1.0.0",
+  "description": "a tool for creating lib",
+  "scripts": {
+    "test": "jest",
+    "build": "rm -rf lib && gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cafutor/create.git"
+  },
+  "keywords": [
+    "create-lib"
+  ],
+  "author": "huangtao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cafutor/create-lib.git/issues"
+  },
+  "homepage": "https://github.com/cafutor/create-lib.git#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.3.1",
+    "eslint": "^8.28.0",
+    "eslint-config-google": "^0.14.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^29.3.1"
+  }
+}
