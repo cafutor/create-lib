@@ -1,7 +1,6 @@
 /node_modules
+/test
 .eslintrc.js
 .babelrc
-.gitignore
 gulpfile.js
-index.js
 LICENSE

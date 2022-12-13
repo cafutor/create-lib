@@ -1,3 +1,1 @@
-export default {
-  name: 'huangtao',
-};
+export const info = 'create-lib';
