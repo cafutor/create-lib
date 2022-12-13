@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const decompress = require('decompress');
 const path = require('path');
 const childProcess = require('child_process');
+const prompts = require('prompts');
 const mainPath = 'create-lib-master';
 
 const sourceUrl =
@@ -19,8 +20,24 @@ const uselessFiles = [
     type: 'directory',
   },
 ];
+const selectObj = {
+  type: 'select',
+  name: 'value',
+  message: '注意文件已经下载，是否需要重新覆盖',
+  choices: [
+    {
+      title: '否',
+      description: '不执行覆盖',
+      value: false,
+    },
+    { title: '是', value: true, description: '执行覆盖' },
+  ],
+  initial: 0,
+};
 
 const fetchSource = () => {
+  process.stdout.clearLine();
+  process.stdout.write(chalk.yellow('downloading...\n'));
   nodeFetch(sourceUrl)
     .then((res) => {
       const loadedPkg = fs.createWriteStream('create-lib.zip');
@@ -80,6 +97,7 @@ const fetchSource = () => {
               childProcess.execSync(
                 `rm -rf ${path.join(process.cwd(), mainPath)}`
               );
+              process.stdout.write(chalk.green('done!\n'));
             });
           });
       });
@@ -97,6 +115,13 @@ const excute = () => {
   if (!fs.existsSync(path.join(process.cwd(), 'package.json'))) {
     fetchSource();
   } else {
+    prompts(selectObj).then((valObj) => {
+      const { value } = valObj;
+      if (value) {
+        childProcess.execSync('rm -rf *');
+        fetchSource();
+      }
+    });
   }
 };
 
