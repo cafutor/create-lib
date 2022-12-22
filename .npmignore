@@ -4,5 +4,5 @@
 .babelrc
 gulpfile.js
 LICENSE
-/comDev
+/compDev
 webpack.config.js
